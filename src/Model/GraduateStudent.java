@@ -11,17 +11,12 @@ public class GraduateStudent extends Student {
     }
 
 
-    public double getResearchFee() {
-        return researchFee;
-    }
-
-    public void setResearchFee(double researchFee) {
-        this.researchFee = researchFee;
-    }
+    public double getResearchFee() { return researchFee; }
+    public void setResearchFee(double researchFee) { this.researchFee = researchFee; }
 
 
     public double calculateTuition(int totalCredits) {
-        return totalCredits * 300 + researchFee; // 300 per credit + research fee
+        return totalCredits * 300 + researchFee;
     }
 
     @Override
