@@ -17,28 +17,35 @@ public class Course {
         this.credits = credits;
     }
 
-    public String getCourseID() {
-        return courseID;
-    }
+    // Getters
+    public String getCourseID() { return courseID; }
+    public String getCourseName() { return courseName; }
+    public int getCredits() { return credits; }
+    public List<Student> getStudents() { return students; }
 
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public int getCredits() {
-        return credits;
-    }
-
-    public List<Student> getStudents() {
-        return students;
-    }
-
+    // Enroll student with duplicate check
     public void enrollStudent(Student student) {
-        students.add(student);
+        if (!students.contains(student)) {
+            students.add(student);
+        } else {
+            System.out.println(student.getName() + " is already enrolled in " + courseName);
+        }
     }
+
+    // Display roster
+    public void displayRoster() {
+        if (students.isEmpty()) {
+            System.out.println("No students enrolled in " + courseName);
+            return;
+        }
+        System.out.println("Roster for " + courseName + ":");
+        for (Student s : students) {
+            System.out.println("- " + s.getName() + " | ID: " + s.getStudentID());
+        }
+    }
+
     @Override
     public String toString() {
-        return "CourseID: " +courseID + "Name of the Course:  " + courseName + "credits " + credits;
+        return "CourseID: " + courseID + " | Name: " + courseName + " | Credits: " + credits;
     }
-
 }
