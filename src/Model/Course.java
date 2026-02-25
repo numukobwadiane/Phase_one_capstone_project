@@ -17,13 +17,13 @@ public class Course {
         this.credits = credits;
     }
 
-    // Getters
+
     public String getCourseID() { return courseID; }
     public String getCourseName() { return courseName; }
     public int getCredits() { return credits; }
     public List<Student> getStudents() { return students; }
 
-    // Enroll student with duplicate check
+
     public void enrollStudent(Student student) {
         if (!students.contains(student)) {
             students.add(student);
@@ -32,7 +32,7 @@ public class Course {
         }
     }
 
-    // Display roster
+
     public void displayRoster() {
         if (students.isEmpty()) {
             System.out.println("No students enrolled in " + courseName);
