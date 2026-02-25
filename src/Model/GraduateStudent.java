@@ -2,25 +2,28 @@ package Model;
 
 public class GraduateStudent extends Student {
 
-    private double researchFee;
+    private static final double COST_PER_CREDIT = 1000.0;
+    private static final double RESEARCH_FEE = 2000.0;
 
-
-    public GraduateStudent(String name, String email, String studentID, String department, double researchFee) {
+    public GraduateStudent(String name, String email,
+                           String studentID, String department) {
         super(name, email, studentID, department);
-        this.researchFee = researchFee;
-    }
-
-
-    public double getResearchFee() { return researchFee; }
-    public void setResearchFee(double researchFee) { this.researchFee = researchFee; }
-
-
-    public double calculateTuition(int totalCredits) {
-        return totalCredits * 300 + researchFee;
     }
 
     @Override
-    public String toString() {
-        return super.toString() + " | Type: Graduate";
+    public double calculateTuition() {
+
+        int totalCredits = getEnrolledCourses()
+                .keySet()
+                .stream()
+                .mapToInt(Course::getCredits)
+                .sum();
+
+        return (totalCredits * COST_PER_CREDIT) + RESEARCH_FEE;
+    }
+
+    @Override
+    public String getRole() {
+        return "Graduate Student";
     }
 }
