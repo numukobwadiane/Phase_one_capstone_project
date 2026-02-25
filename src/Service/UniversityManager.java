@@ -10,17 +10,17 @@ public class UniversityManager {
     private List<Student> students = new ArrayList<>();
     private List<Course> courses = new ArrayList<>();
 
-    // Register student
+
     public void registerStudent(Student student) {
         students.add(student);
     }
 
-    // Create course
+
     public void createCourse(Course course) {
         courses.add(course);
     }
 
-    // Enroll student with business validation
+
     public void enrollStudentInCourse(Student student, Course course, double grade)
             throws CourseFullException, StudentAlreadyEnrolledException {
 
@@ -30,17 +30,17 @@ public class UniversityManager {
                     "Course " + course.getCourseName() + " is full.");
         }
 
-        // Rule 2: Prevent duplicate enrollment
+
         if (course.getStudents().contains(student)) {
             throw new StudentAlreadyEnrolledException(
                     student.getName() + " is already enrolled in " + course.getCourseName());
         }
 
-        // If all good → enroll
+
         student.enrollCourse(course, grade);
     }
 
-    // Average GPA by department (Streams)
+
     public double calculateAverageGpaByDepartment(String department) {
         return students.stream()
                 .filter(s -> s.getDepartment().equalsIgnoreCase(department))
@@ -49,7 +49,7 @@ public class UniversityManager {
                 .orElse(0.0);
     }
 
-    // Find top student (Streams)
+
     public Optional<Student> findTopStudent() {
         return students.stream()
                 .max(Comparator.comparingDouble(Student::getGpa));
@@ -62,4 +62,6 @@ public class UniversityManager {
     public List<Course> getCourses() {
         return courses;
     }
+
+
 }

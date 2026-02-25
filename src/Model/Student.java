@@ -9,7 +9,7 @@ public abstract class Student extends Person {
     private double gpa;
     private String department;
 
-    // Many-to-many relationship
+
     private Map<Course, Double> enrolledCourses = new HashMap<>();
 
     public Student(String name, String email,
@@ -20,13 +20,13 @@ public abstract class Student extends Person {
         this.gpa = 0.0;
     }
 
-    // Enroll course + assign grade
+
     public void enrollCourse(Course course, double grade) {
         enrolledCourses.put(course, grade);
         course.getStudents().add(this);
     }
 
-    // Calculate GPA automatically based on grades
+
     public void calculateGpa() {
         if (enrolledCourses.isEmpty()) {
             gpa = 0.0;
@@ -41,8 +41,6 @@ public abstract class Student extends Person {
 
         gpa = total / enrolledCourses.size();
     }
-
-    // Getters & Setters
 
     public String getStudentID() {
         return studentID;
@@ -78,6 +76,6 @@ public abstract class Student extends Person {
                 " | GPA: " + gpa;
     }
 
-    // Required for Lab 1 Exercise 1.2
+
     public abstract double calculateTuition();
 }
